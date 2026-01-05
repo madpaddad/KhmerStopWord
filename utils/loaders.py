@@ -13,3 +13,14 @@ def load_khmer_dictionary() -> set[str]:
             dictionary.add(word)
 
     return dictionary
+
+def load_khmer_pos_dictionary() -> dict[str, str]:
+    lexicon = {}
+    with open(KHMER_DICT_CSV, mode='r', encoding=UTF8) as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            word = unicodedata.normalize("NFC", row["word"].strip())
+            pos = row["pos"].strip()
+            lexicon[word] = pos
+
+    return lexicon
