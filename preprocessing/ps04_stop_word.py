@@ -15,7 +15,7 @@ class StopWordRemover(PreprocessorBase):
             - List of (token, POS) tuples: [("ខ្ញុំ", "បុ."), ("ជា", "ន.")]
         """
         cleaned = []
-
+        
         if not tokens:
             return []
 

@@ -32,7 +32,7 @@ if __name__ == "__main__":
 
     pipeline = Pipeline(text=text, dictionary=dictionary)
     tokens = pipeline.run()
-    print(tokens)
+    print("\n","Token are ",tokens, "\n")
 
 
 # frequency_analyzer.py
@@ -45,7 +45,7 @@ texts = [
 ]
 freq_analyzer = FrequencyAnalyzer(dictionary=dictionary)
 freq_analyzer.process_corpus(texts)
-print(freq_analyzer.counter)
+print("\n Your word counters are ", freq_analyzer.counter, "\n")
 
 # contextual example
 documents = [
@@ -59,8 +59,10 @@ scorer.fit(documents)  # Fit TF-IDF on corpus
 
 # Compute TF*IDF scores
 scores = scorer.score_all(documents)
-print("TF*IDF scores:", scores)
-
+print(f'TF*IDF scores:')
+for k, v in scores.items():
+    print(f"  {k:<10}: {v:>8.4f}")
+print("\n")
 # Suggest stop-words (low IDF)
 stop_words = scorer.suggest_stop_words(scores, percentile=20)
 print("Candidate stop-words:", stop_words)
