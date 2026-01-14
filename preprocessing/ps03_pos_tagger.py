@@ -8,7 +8,7 @@ class POSTagger(PreprocessorBase):
     
     def __init__(self, lexicon: dict = None):
         """
-        dictionary: dict[word] = POS
+        dictionary: dict[word] = POS : Part of Speech
         """
         self.lexicon = lexicon or load_khmer_pos_dictionary()
         self.lexicon = { unicodedata.normalize("NFC", word) : pos for word, pos in self.lexicon.items()}

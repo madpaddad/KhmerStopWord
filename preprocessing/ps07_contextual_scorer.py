@@ -3,6 +3,20 @@ import unicodedata
 from typing import List, Dict, Set
 import numpy as np
 
+
+import logging
+
+# Create and configure logger
+logging.basicConfig(filename="newfile.log",
+                    format='%(asctime)s %(message)s',
+                    filemode='w')
+
+# Creating an object
+logger = logging.getLogger()
+
+# Setting the threshold of logger to DEBUG
+logger.setLevel(logging.DEBUG)
+
 class ContextualScorer:
     """
     Compute contextual stop-word scores for a corpus using TF-IDF.
@@ -23,7 +37,13 @@ class ContextualScorer:
         """
         # Convert each document into normalized string
         normalized_docs = [self.normalize_doc(doc) for doc in documents]
+        
 
+        print('\n\n Fiting the docs with docs')
+        for doc in documents:
+            print(doc)
+
+        print('\n After normalizing: ', normalized_docs)
         # Initialize TF-IDF vectorizer
         self.vectorizer = TfidfVectorizer(
             analyzer='word',
